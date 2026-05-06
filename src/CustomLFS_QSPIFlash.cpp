@@ -125,6 +125,28 @@ const QSPIFlashChip qspiFlashChips[] = {
   .erase_timeout_ms = 12,             // Sector erase time max
   .startup_delay_us = 10000,          // Conservative startup delay
   .name = "ZD25WQ16BUIGR"
+},
+// Zetta ZD25WQ32CEIGR - Ultra Low Power 32Mb Flash
+{
+  .jedec_id = {0xBA, 0x60, 0x16},
+  .total_size = 4194304,              // 4MB (32Mbit)
+  .sector_size = 4096,
+  .page_size = 256,
+  .address_bits = 24,
+  .read_opcode = 0xEB,                // 4x I/O Read (QREAD)
+  .program_opcode = 0x32,             // Quad Page Program (QPP)
+  .erase_opcode = 0x20,               // Sector Erase (SE)
+  .status_opcode = 0x05,              // Read Status Register (RDSR)
+  .supports_quad_read = true,
+  .supports_quad_write = true,
+  .quad_enable_register = 2,          // Status Register S9 (QE bit)
+  .quad_enable_bit = 1,               // QE is bit 1 in register 2
+  .quad_enable_volatile = false,
+  .max_clock_hz = 104000000,          // 104MHz max frequency
+  .write_timeout_ms = 3,              // Page program time max
+  .erase_timeout_ms = 20,             // Sector erase time max
+  .startup_delay_us = 10000,          // Conservative startup delay
+  .name = "ZD25WQ32CEIGR"
 }
 };
 
